@@ -20,11 +20,16 @@ func=""
 def insert(value):
     global i
     global func
+    current_num = entry.get()
+    if current_num == 'Error':
+        clear()
+    else:
+        current_num+value
     if (value=="%"):
         value="/100"
     func+=value
     entry.insert(i, value)
-    i=i+1
+    i += 1
 
 def delete_last():
     current_num = entry.get()
@@ -40,10 +45,10 @@ def clear():
 def calculate():
     try:
         global func
-        result=""
         result=eval(func)
         clear()
         entry.insert(0, result)
+        func = str(result)
     except:
         entry.delete(0, END)
         entry.insert(0, 'Error')
