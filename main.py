@@ -14,13 +14,25 @@ calc = ctk.CTk()
 calc.geometry("360x500")
 calc.title("Calculator")
 
+def insert(value):
+    global i
+    global func
+    entry.insert(i, value)
+    i=i+1
 
+def delete_last():
+    entry.delete(END)
+
+def clear():
+    entry.delete(0,END)
+
+#Entry Box
 entry = ctk.CTkEntry(calc, placeholder_text="", width=320, height=60, font=('Arial',20))
 entry.grid(padx=20, pady=10,)
 
 #Buttons
 
-button1 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="Del", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button1 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="Del", command="delete", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button1.place(x=20, y=80)
 
 button2 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="C", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
@@ -73,16 +85,13 @@ button15.place(x=260, y=320)
 button16 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="0", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button16.place(x=100, y=400)
 
-button17 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text=".", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button17 = ctk.CTkButton(calc, height=80, width=160, hover=True, hover_color="black", text="=", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button17.place(x=180, y=400)
 
-button18 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="=", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
-button18.place(x=260, y=400)
+button18 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="%", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button18.place(x=180, y=80)
 
-button19 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="CE", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
-button19.place(x=180, y=80)
-
-button20 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="%", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
-button20.place(x=20, y=400)
+button19 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text=".", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button19.place(x=20, y=400)
 
 calc.mainloop()
