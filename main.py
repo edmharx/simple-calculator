@@ -24,18 +24,22 @@ def insert(value):
     if current_num == 'Error':
         clear()
     else:
-        current_num+value
+        current_num+=value
     if (value=="%"):
         value="/100"
     func+=value
     entry.insert(i, value)
-    i += 1
+    i += len(value)
 
 def delete_last():
+    global i
+    global func
     current_num = entry.get()
     new_num = current_num[:-1]
     entry.delete(0, END)
     entry.insert(0, new_num)
+    func = new_num
+    i = len(new_num)
 
 def clear():
     global func
@@ -45,7 +49,7 @@ def clear():
 def calculate():
     try:
         global func
-        result=eval(func)
+        result=eval(func) #eval function to reduce lines and functions for simple calculations
         clear()
         entry.insert(0, result)
         func = str(result)
