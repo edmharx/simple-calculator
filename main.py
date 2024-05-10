@@ -20,6 +20,8 @@ func=""
 def insert(value):
     global i
     global func
+    if (value=="%"):
+        value="/100"
     func+=value
     entry.insert(i, value)
     i=i+1
@@ -31,14 +33,20 @@ def delete_last():
     entry.insert(0, new_num)
 
 def clear():
+    global func
     entry.delete(0,END)
+    func = ""
     
 def calculate():
-    global func
-    result=""
-    result=eval(func)
-    clear()
-    entry.insert(0, result)
+    try:
+        global func
+        result=""
+        result=eval(func)
+        clear()
+        entry.insert(0, result)
+    except:
+        entry.delete(0, END)
+        entry.insert(0, 'Error')
 
 #Entry Box
 entry = ctk.CTkEntry(calc, placeholder_text="", width=320, height=60, font=('Arial',20))
@@ -91,7 +99,7 @@ button13.place(x=100, y=320)
 button14 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="3", command=lambda:insert("3"), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button14.place(x=180, y=320)
 
-button15 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="x", command=lambda:insert("x"), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button15 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="x", command=lambda:insert("*"), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button15.place(x=260, y=320)
 
 
@@ -99,7 +107,7 @@ button15.place(x=260, y=320)
 button16 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="0", command=lambda:insert("0"), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button16.place(x=100, y=400)
 
-button17 = ctk.CTkButton(calc, height=80, width=160, hover=True, hover_color="black", text="=", command=lambda:insert("="), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button17 = ctk.CTkButton(calc, height=80, width=160, hover=True, hover_color="black", text="=", command=calculate, corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button17.place(x=180, y=400)
 
 button18 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="%", command=lambda:insert("%"), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
