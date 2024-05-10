@@ -17,6 +17,7 @@ calc.title("Calculator")
 def insert(value):
     global i
     global func
+    func+=value
     entry.insert(i, value)
     i=i+1
 
@@ -28,6 +29,13 @@ def delete_last():
 
 def clear():
     entry.delete(0,END)
+    
+def calculate():
+    global func
+    result=""
+    result=eval(func)
+    clear()
+    entry.insert(0, result)
 
 #Entry Box
 entry = ctk.CTkEntry(calc, placeholder_text="", width=320, height=60, font=('Arial',20))
@@ -41,7 +49,7 @@ button1.place(x=20, y=80)
 button2 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="C", command=clear, corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button2.place(x=100, y=80)
 
-button3 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="+", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button3 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="+", command=lambda:insert("+"), corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button3.place(x=260, y=80)
 
 
