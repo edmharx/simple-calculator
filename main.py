@@ -21,7 +21,10 @@ def insert(value):
     i=i+1
 
 def delete_last():
-    entry.delete(END)
+    current_num = entry.get()
+    new_num = current_num[:-1]
+    entry.delete(0, END)
+    entry.insert(0, new_num)
 
 def clear():
     entry.delete(0,END)
@@ -32,10 +35,10 @@ entry.grid(padx=20, pady=10,)
 
 #Buttons
 
-button1 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="Del", command="delete", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button1 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="Del", command=delete_last, corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button1.place(x=20, y=80)
 
-button2 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="C", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
+button2 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="C", command=clear, corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
 button2.place(x=100, y=80)
 
 button3 = ctk.CTkButton(calc, height=80, width=80, hover=True, hover_color="black", text="+", command="button_event", corner_radius=0, border_color="white", border_width=1, border_spacing=0, font=('Arial',20))
